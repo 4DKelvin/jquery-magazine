@@ -26,7 +26,7 @@
       $layout.addClass('magazines').css({'height': height, 'width': width});
       $layout.find(option.items).addClass('magazine');
       //插入翻页指示
-      $('<div/>', {class: 'magazine-arrow'}).appendTo($layout);
+      $('<div/>', {class: 'magazine-arrow'}).insertAfter($layout);
       //获取第一张和第二张
       $current = $layout.find(option.items).eq(0).addClass('current-magazine');
       $after = $layout.find(option.items).eq(1).addClass('after-magazine');
@@ -100,7 +100,7 @@
       $current = $('.magazine.current-magazine');
       $after = $('.magazine.after-magazine');
 
-      if ($after.next().length) {
+      if ($after.length) {
         //如果这不是最后一张那么显示翻页指示
         $('.magazine-arrow').show();
       } else {

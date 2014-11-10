@@ -35,7 +35,7 @@
             $('.before-magazine'),
             $('.after-magazine')
         ]).each(function (i, image) {
-            if (!image.hasClass('loading')) {
+            if (image.length && !image.hasClass('loading')) {
                 image.addClass('loading');
                 var img = new Image();
                 img.onload = function () {
