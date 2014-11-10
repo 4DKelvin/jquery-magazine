@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>杂志</title>
+    <meta charset="utf-8">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="pragram" content="no-cache">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="./jquery.magazine.css"/>
+    <script src="./jquery.js"></script>
+    <script src="./jquery.magazine.js"></script>
+</head>
+<body>
+<div id="mSlider">
+    <div data-src="http://kerugui-doc.qiniudn.com/001.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/002.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/003.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/004.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/005.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/006.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/007.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/008.png"></div>
+    <div data-src="http://kerugui-doc.qiniudn.com/009.png"></div>
+</div>
+<script>
+    function lazyLoad() {
+        $([
+            $('.current-magazine'),
+            $('.before-magazine'),
+            $('.after-magazine')
+        ]).each(function (i, image) {
+            if (!image.hasClass('loading')) {
+                image.addClass('loading');
+                var img = new Image();
+                img.onload = function () {
+                    image.css({
+                        'background-image': 'url(' + image.data('src') + ')',
+                        'background-position': '50% 50%',
+                        'background-size': 'cover'
+                    }).removeAttr('data-src');
+                }
+                img.src = image.data('src');
+            }
+        });
+    }
+
+    $('#mSlider').magazine({
+        items: 'div',
+        onInit: function () {
+            lazyLoad();
+        },
+        onChange: function () {
+            lazyLoad();
+        }
+    });
+</script>
+</body>
+</html>
