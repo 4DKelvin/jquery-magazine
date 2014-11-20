@@ -53,7 +53,7 @@ body {
 .magazine.loading {
   background-image: url(http://img0.hx.com/magazine/img/load.gif);
   background-color: white;
-  background-size: 64px 64px;
+  background-size: 32px 32px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
